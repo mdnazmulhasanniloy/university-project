@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --primary-black: #232323;
+    --primary-white: #f8fafc;
+    --primary-blue: #0049ad;
+    --primary-orange: #fa8600;
+
+    --scroll-shadow-size: 60px;
+  }
+
+  .primary-gradient {
+    background: linear-gradient(
+        180deg,
+        var(--primary-blue) 0%,
+        var(--primary-orange) 100%
+      ),
+      rgba(255, 255, 255, 0.22);
+
+    animation: animated-gradient 15s ease infinite;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .card-gradient {
+    background: conic-gradient(
+      from 0deg,
+      rgba(0, 73, 173, 1),
+      rgba(176, 199, 230, 0.2),
+      rgba(234, 191, 255, 1) 25%,
+      rgba(250, 134, 0, 1) 50%,
+      rgba(234, 191, 255, 1) 75%,
+      rgba(0, 73, 173, 1)
+    );
+  }
+}
+
+@layer utilities {
+  .mask-gradient {
+    mask-image: linear-gradient(
+      180deg,
+      #000 calc(100% - var(--scroll-shadow-size)),
+      transparent
+    );
+  }
+}
+
+/* -------------------------------- */
+/* Custom Utilities */
+/* -------------------------------- */
+.border-red {
+  @apply border border-red-500;
+}
+
+.flex-center-start {
+  @apply flex items-center justify-start;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-center-between {
+  @apply flex items-center justify-between;
+}
+
+.flex-start-between {
+  @apply flex items-start justify-between;
+}
+
+.flex-start-end {
+  @apply flex items-start justify-end;
+}
+
+.flex-stretch-end {
+  @apply flex items-stretch justify-end;
+}
+
+.flex-stretch-center {
+  @apply flex items-stretch justify-center;
+}
+
+.flex-center-start {
+  @apply flex items-center justify-start;
+}
+
+.flex-center-end {
+  @apply flex items-center justify-end;
+}
+
+.flex-start-start {
+  @apply flex items-start justify-start;
+}
+
+/* Scroll Shadow */
+.scroll-shadow {
+  @apply [mask-image:linear-gradient(180deg,#000_calc(100%_-_var(--scroll-shadow-size)),transparent)];
+}
+
+/* -------------------------------- */
+/* Custom Skeleton styles */
+/* -------------------------------- */
+.skeleton {
+  @apply bg-slate-300/75;
+  will-change: background-position;
+  animation: skeleton 1.8s ease-in-out infinite;
+  background-image: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    #f4f4f4 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  background-repeat: no-repeat;
+  background-position-x: -50%;
+}
+
+@media (prefers-reduced-motion) {
+  .skeleton {
+    animation-duration: 15s;
+  }
+}
+@keyframes skeleton {
+  from {
+    background-position: 150%;
+  }
+  to {
+    background-position: -50%;
+  }
+}
+
+/* --------------------------------- */
+/* Jodit Editor Custom Styles */
+/* --------------------------------- */
+
+/* / Heading levels / */
+
+.jodit-wysiwyg {
+  @apply !text-lg;
+}
+
+.jodit-wysiwyg h1 {
+  @apply text-2xl font-bold;
+}
+
+.jodit-wysiwyg h2 {
+  @apply text-xl font-bold;
+}
+
+.jodit-wysiwyg h3 {
+  @apply text-lg font-semibold;
+}
+
+.jodit-wysiwyg h4 {
+  @apply text-base font-medium;
+}
+/* / Quotes / */
+.jodit-wysiwyg blockquote {
+  @apply rounded-lg border border-gray-200 bg-gray-100 p-4;
+}
+
+blockquote {
+  @apply rounded-lg border border-gray-200 bg-gray-100 p-4;
+}
+
+/* / Code blocks / */
+.jodit-wysiwyg pre,
+.jodit-wysiwyg code {
+  @apply rounded-lg bg-gray-900 px-4 py-2 font-mono text-white;
+}
+
+/* / Unordered lists / */
+.jodit-wysiwyg ul {
+  @apply list-inside list-disc pl-8;
+}
+
+.jodit-wysiwyg ol {
+  @apply list-inside list-decimal pl-8;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* ------------------------------------- */
+/* SweetAlert2 Custom Styles */
+/* ------------------------------------- */
+.swal2-modal {
+  @apply !z-[999999999] !w-[30rem] !bg-primary-blue !text-white;
+}
+.swal2-close {
+  @apply !mr-2 !mt-2 !h-[0.5em] !w-[0.5em];
+}
+
+/* Ping animation for notification dot */
+/* Ping animation for notification */
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* .ping {
+  position: relative;
+} */
+
+.ping::before,
+.ping::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #dc2626;
+  z-index: -100;
+}
+
+.ping::before {
+  animation: ping 1.7s ease 5;
+  opacity: 0.5;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ======================= */
+/* Google map search */
+/* ======================= */
+.pac-container.pac-logo {
+  border-radius: 15px;
+  padding: 0px 10px;
+  z-index: 9999999999 !important;
+}
+
+/* =============================== */
+/* Pulse Animation for Logo */
+/* =============================== */
+.custom-pulse-animation {
+  animation: pulseAnimation 1.5s linear infinite alternate-reverse;
+}
+
+@keyframes pulseAnimation {
+  0% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@-webkit-keyframes pulseAnimation {
+  0% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+/* div {
+  border: 1px solid red;
+} */

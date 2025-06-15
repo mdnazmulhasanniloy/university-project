@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Fonts */
+@font-face {
+  font-family: "General Sans";
+  src: url("../assets/fonts/GeneralSans-Variable.woff2");
+}
+
+:root {
+  --font-general-sans: "General Sans", sans-serif;
+
+  /* Custom Colors */
+  --radius: 0.5rem;
+  --primary-black: #232323;
+  --primary-white: #f8fafc;
+  --primary-blue: #0049ad;
+  --primary-blue-light: #3c8cfa;
+  --primary-orange: #fa8600;
+  --primary-orange-400: #fa9b2d;
+  --primary-orange-light: #fef3e5;
+
+  --scroll-shadow-size: 60px;
+}
+
+* {
+  font-family: var(--font-general-sans) !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide Scrollbar */
+.scroll-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.scroll-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.border-red {
+  @apply border border-red-500;
+}
+
+/* --------- Custom Utilities ----------- */
+
+.flex-center-start {
+  @apply flex items-center justify-start;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-center-between {
+  @apply flex items-center justify-between;
+}
+
+.flex-start-between {
+  @apply flex items-start justify-between;
+}
+
+.flex-center-start {
+  @apply flex items-center justify-start;
+}
+
+.flex-start-start {
+  @apply flex items-start justify-start;
+}
+
+/* Ant design override */
+.ant-modal-close-icon * {
+  fill: black !important;
+}
+
+.ant-table-cell {
+  font-weight: 500;
+}
+
+.ant-form-item-label label {
+  font-weight: 500;
+}
+
+.ant-popconfirm-description {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+}
+
+.ant-tabs-tab-btn {
+  font-weight: 500;
+}
+
+.ant-input {
+  font-weight: 450 !important;
+}
+
+.ant-otp input {
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+}
+
+.ant-upload.ant-upload-select {
+  width: 100% !important;
+}
+
+/* ------------------------------------- */
+/* SweetAlert2 Custom Styles */
+/* ------------------------------------- */
+.swal2-modal {
+  @apply !w-[30rem] !bg-primary-blue !text-white;
+}
+
+.swal2-modal,
+.swal2-modal * {
+  font-family: var(--font-general-sans) !important;
+}
+
+.swal2-close {
+  @apply !mr-2 !mt-2 !h-[0.7em] !w-[0.7em];
+}
+
+/* ------------------------------------- */
+/* Ant Design Custom Styles */
+/* ------------------------------------- */
+.ant-upload-wrapper {
+  width: 100% !important;
+}
+.ant-upload-select {
+  width: 100% !important;
+}
