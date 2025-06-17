@@ -9,7 +9,7 @@ import {
   UploadedFiles,
 } from '../../interface/common.interface';
 import { uploadManyToS3, uploadToS3 } from '../../utils/s3';
-import { userSearchableFields } from './user.constants';
+import { USER_ROLE, userSearchableFields } from './user.constants';
 import { paginationHelper } from '../../helpers/pagination.helpers';
 import { Types } from 'mongoose';
 export type IFilter = {
@@ -19,6 +19,11 @@ export type IFilter = {
 };
 
 const createUser = async (payload: IUser): Promise<IUser> => {
+
+  if(payload?.role === USER_ROLE.service_provider && !payload?.location){
+    //@ts-ignore
+    payload.location.coordinates = [90.3262159275114, 23.82666771822877]
+  }
   const isExist = await User.isUserExist(payload.email as string);
 
   if (isExist && !isExist?.verification?.status) {
