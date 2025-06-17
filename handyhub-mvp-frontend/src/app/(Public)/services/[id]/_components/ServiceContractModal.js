@@ -3,6 +3,7 @@
 import ContinueToLoginModal from "@/components/ContinueToLoginModal/ContinueToLoginModal";
 import FormWrapper from "@/components/form-components/FormWrapper";
 import UDatePicker from "@/components/form-components/UDatePicker";
+import UInput from "@/components/form-components/UInput";
 import USelect from "@/components/form-components/USelect";
 import UTextEditor from "@/components/form-components/UTextEditor";
 import UUpload from "@/components/form-components/UUpload";
@@ -32,13 +33,7 @@ export default function ServiceContractModal({ open, setOpen, servicePost }) {
 
   // Get user profile
   const { data: profile } = useGetProfileQuery({}, { skip: !userId });
-  const [location, setLocation] = useState(
-    // profile?.location ||
-    {
-      type: "Point",
-      coordinates: [90.42542154233024, 23.7748129376789],
-    },
-  );
+  const [location, setLocation] = useState(profile?.location || {});
 
   const [createContract, { isLoading }] = useCreateContractMutation(
     {},
@@ -53,14 +48,14 @@ export default function ServiceContractModal({ open, setOpen, servicePost }) {
   }, [profile]);
 
   const onSubmit = async (data) => {
-    if (
-      !location?.coordinates ||
-      (location?.coordinates?.length > 0 &&
-        location?.coordinates[0] === 0 &&
-        location?.coordinates[1] === 0)
-    ) {
-      return alert("Please select a address for the service!!");
-    }
+    // if (
+    //   !location?.coordinates ||
+    //   (location?.coordinates?.length > 0 &&
+    //     location?.coordinates[0] === 0 &&
+    //     location?.coordinates[1] === 0)
+    // ) {
+    //   return alert("Please select a address for the service!!");
+    // }
 
     const formData = new FormData();
 
@@ -76,7 +71,10 @@ export default function ServiceContractModal({ open, setOpen, servicePost }) {
       "data",
       JSON.stringify({
         servicesPost: servicePost?._id,
-        location,
+        location: {
+          type: "Point",
+          coordinates: [90.42542154233024, 23.7748129376789],
+        },
         address,
         completionDate: format(data.completionDate, "yyyy-MM-dd"),
         ...data,

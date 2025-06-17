@@ -31,13 +31,7 @@ export default function CreateContract({ id }) {
 
   // Get user profile
   const { data: profile } = useGetProfileQuery({}, { skip: !userId });
-  const [location, setLocation] = useState(
-    // profile?.location ||
-    {
-      type: "Point",
-      coordinates: [90.42542154233024, 23.7748129376789],
-    },
-  );
+  const [location, setLocation] = useState(profile?.location || {});
 
   const [createContract, { isLoading }] = useCreateContractMutation(
     {},
@@ -52,14 +46,14 @@ export default function CreateContract({ id }) {
   }, [profile]);
 
   const onSubmit = async (data) => {
-    if (
-      !location?.coordinates ||
-      (location?.coordinates?.length > 0 &&
-        location?.coordinates[0] === 0 &&
-        location?.coordinates[1] === 0)
-    ) {
-      return alert("Please select a address for the service!!");
-    }
+    // if (
+    //   !location?.coordinates ||
+    //   (location?.coordinates?.length > 0 &&
+    //     location?.coordinates[0] === 0 &&
+    //     location?.coordinates[1] === 0)
+    // ) {
+    //   return alert("Please select a address for the service!!");
+    // }
 
     const formData = new FormData();
 
@@ -75,7 +69,10 @@ export default function CreateContract({ id }) {
       "data",
       JSON.stringify({
         servicesPost: id,
-        location,
+        location: {
+          type: "Point",
+          coordinates: [90.42542154233024, 23.7748129376789],
+        },
         address,
         completionDate: format(data.completionDate, "yyyy-MM-dd"),
         ...data,
