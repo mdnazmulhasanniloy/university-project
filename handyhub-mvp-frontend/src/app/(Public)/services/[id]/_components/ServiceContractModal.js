@@ -3,7 +3,6 @@
 import ContinueToLoginModal from "@/components/ContinueToLoginModal/ContinueToLoginModal";
 import FormWrapper from "@/components/form-components/FormWrapper";
 import UDatePicker from "@/components/form-components/UDatePicker";
-import UInput from "@/components/form-components/UInput";
 import USelect from "@/components/form-components/USelect";
 import UTextEditor from "@/components/form-components/UTextEditor";
 import UUpload from "@/components/form-components/UUpload";
@@ -34,7 +33,8 @@ export default function ServiceContractModal({ open, setOpen, servicePost }) {
   // Get user profile
   const { data: profile } = useGetProfileQuery({}, { skip: !userId });
   const [location, setLocation] = useState(
-    profile?.location || {
+    // profile?.location ||
+    {
       type: "Point",
       coordinates: [90.42542154233024, 23.7748129376789],
     },

@@ -32,7 +32,8 @@ export default function CreateContract({ id }) {
   // Get user profile
   const { data: profile } = useGetProfileQuery({}, { skip: !userId });
   const [location, setLocation] = useState(
-    profile?.location || {
+    // profile?.location ||
+    {
       type: "Point",
       coordinates: [90.42542154233024, 23.7748129376789],
     },
